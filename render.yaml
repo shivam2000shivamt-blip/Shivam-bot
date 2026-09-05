@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: shivam-store-bot
+    runtime: docker
+    plan: starter
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_USER_ID
+        sync: false
+      - key: DB_PATH
+        value: /var/data/shivam_store.sqlite3
+      - key: STORE_TIMEZONE
+        value: Asia/Kolkata
+      - key: IMAP_ENABLED
+        value: "0"
+    disk:
+      name: shivam-store-data
+      mountPath: /var/data
+      sizeGB: 1
